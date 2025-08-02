@@ -1,11 +1,12 @@
-
+'''
+# numpyapp.py
 import numpy as np
 
 a =np.array([1, 2, 3], dtype = 'int8')
 b = np.array([[4, 5, 6], [7, 8, 9]], dtype = 'int16')
 c = np.array([[10, 11], [12, 13], [14, 15]], dtype = 'int32')
 
-'''
+
 ## Displaying the properties of the arrays
 # array a
 print('=' * 20)
@@ -36,12 +37,17 @@ print(f"total bytes: {c.nbytes}")
 print(c.ndim)
 print(c.shape)
 print('=' * 20)
-'''
+
 # Displaying the properties of the arrays
 print('=' * 20)
 print(b)
 print(b[0,:])
 
-a= np.random.randint(0, 100, size=(3, 3))
-print(a)
 
+print(a)'''
+
+import numpy as np
+import pandas as pd
+a= np.random.randint(0, 100, size=(3, 3))
+df = pd.DataFrame(a, columns=['A', 'B', 'C'])
+print(df.tail())
