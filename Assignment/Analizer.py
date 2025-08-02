@@ -315,3 +315,72 @@ class Stats:
         print(f"Skewness   : {self.get_skewness():.4f} {'Positive Skewness' if self.get_skewness()>0 else 'Nigative Skewness'}")
         print(f"Kurtosis   : {self.get_kurtosis():.4f}")
         print("-" * 40)
+
+
+
+## Data Class
+# This class is designed to handle a collection of data and check for duplicates.
+# It can accept data in the form of a set, list, or tuple.
+# The DuplicateCheck method checks if there are any duplicate elements in the data.
+# It returns True if duplicates are found, otherwise False.
+# The ReturnDuplicates method returns a set of duplicate elements if any are found, otherwise None.
+# The NullCheck method checks if there are any None values in the data.
+# The IsEmpty method checks if the data is empty.
+# The __str__ method returns a string representation of the data.
+# Example usage:
+# data = Data([1, 2, 3, 4, 5, 1, 2])
+# print(data.DuplicateCheck())  # Output: True
+# print(data.ReturnDuplicates())  # Output: {1, 2}
+
+import numpy as np
+
+class Data:
+    
+    def __init__(self, data : set | list | tuple):
+        self.__data = data
+
+    def DuplicateCheck(self) -> bool:
+        seen = set()
+        for i in self.__data:
+            if i in seen:
+                return True
+            seen.add(i)
+        return False
+
+    def ReturnDuplicates(self) -> set | None:
+        seen = set()
+        duplicates = set()
+        for i in self.__data:
+            if i in seen:
+                duplicates.add(i)
+            else:
+                seen.add(i)
+        return duplicates if duplicates else None
+     
+    def UniqueData(self) -> set:
+        return set(self.__data)
+
+    def NullCheck(self) -> bool:
+        return any(i is None for i in self.__data)
+
+    def IsEmpty(self) -> bool:
+        return len(self.__data) == 0
+    
+    def RmNull(self) -> set:
+        return {i for i in self.__data if i is not None}
+      
+    def CleanData(self) -> list:
+        return sorted(self.RmNull())
+    
+    def __str__(self):
+        return f"Data: {self.__data}"
+
+### data visualization
+# This class is designed to handle a collection of data and visualize it using matplotlib.
+# It can accept data in the form of a set, list, or tuple.  
+class DataVisualization:    
+    pass
+
+
+d = Data([3, None, 2, 1, 2, None])
+print(d.CleanData())  # 👉 [1, 2, 3]
